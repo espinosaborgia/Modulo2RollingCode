@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../css/_styles.css" rel="stylesheet" />
+    <link href="../css/admin.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Distri Mundo - Administración</title>
+  </head>
+  <body>
+    <!--Header//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="./products.html">Productos</a></li>
+          <li id="admin-item"><a href="./admin.html">Administracion</a></li>
+          <li class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginnav"> acceder </li>
+          <li id="logout" class="btn btn-danger">Cerrar Sesion</li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--Main //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <main>
+      <section class="container fluid center">
+        <a href="./adminProducts.html">Administración de Productos</a>
+        <a href="./adminUsers.html">Administración de Usuarios</a>
+      
+      </section>
+      
+
+    </main>
+
+    <!-- Login Modal /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><span class="badge rounded-pill text-bg-warning">Login</span> Inicia Sesión </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-control" type="email" required id="email" placeholder="example@mail.com"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">Password</label>
+              <input class="form-control" type="password" required id="password" placeholder="Ingresa tu contraseña"/>
+            </div>
+
+            <div class="mb-3">
+              <a href="./register.html">No tienes cuenta? regístrate acá.</a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close"> Cerrar </button>
+            <button id="login" type="button" class="btn btn-dark"> Iniciar Sesión </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Login Modal--> 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../js/services/init.app.js" type="module"></script>
+    <script src="../js/services/security.context.js" type="module"></script>
+    <script src="../js/login.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../css/_styles.css" rel="stylesheet" />
+    <link href="../css/admin.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Distri Mundo - Administración de Productos</title>
+  </head>
+  <body>
+    <!--Header//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="./products.html">Productos</a></li>
+          <li id="admin-item"><a href="./admin.html">Administracion</a></li>
+          <li class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginnav"> acceder </li>
+          <li id="logout" class="btn btn-danger">Cerrar Sesion</li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--Main //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <main>
+      <section class="container fluid center">
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#createModal"> Agregar Productos </button>
+      </section>
+      
+      <section class="container mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
+              <th>Distribuidor</th>
+              <th>Cantidad</th>
+              <th>Categoria</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="products-table"></tbody>
+        </table>
+      </section>
+
+
+      
+    </main>
+
+    <!-- Login Modal /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"><span class="badge rounded-pill text-bg-warning">Login</span> Inicia Sesión </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-control" type="email" required id="email" placeholder="example@mail.com"/>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">Password</label>
+              <input class="form-control" type="password" required id="password" placeholder="Ingresa tu contraseña"/>
+            </div>
+
+            <div class="mb-3">
+              <a href="./register.html">No tienes cuenta? regístrate acá.</a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close"> Cerrar </button>
+            <button id="login" type="button" class="btn btn-dark"> Iniciar Sesión </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Login Modal--> 
+
+    <!--Admin Modal ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="adminModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"> ¿Qué desea hacer? </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Por favor seleccione una de las opciones:
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"> Eliminar Producto </button>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updateModal"> Modificar Producto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Admin Modal -->
+
+
+    <!--Delete Modal ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Producto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body"> ¿Está seguro que desea eliminar el producto? </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar </button>
+            <button type="button" class="btn btn-danger" id="deleteProduct"> Aceptar </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Delete Modal -->
+
+    <!--Update Modal /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Producto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="mb-3">
+              <label class="form-label" for="name">Nombre</label>
+              <input class="form-control" type="text" required id="name" placeholder="Ingrese el nombre del producto"/>
+            </div>
+            
+            <div class="mb-3">
+              <label for="description">Descripción</label>
+              <textarea class="form-control" placeholder="Ingrese la descripción del producto" id="description"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label class="form-label" for="price">Precio</label>
+              <textarea class="form-control" placeholder="Ingrese el precio del producto" id="price"></textarea>
+            </div>
+
+            <div class="mb-3">
+              
+              <div class="mb-3">
+                <label class="form-label" for="picture">Url de Imagen</label>
+                <input class="form-control" type="text" required id="picture" placeholder="Ingrese la url de la imagen"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="distributor">Distribuidor</label>
+                <input class="form-control" type="text" required id="distributor" placeholder="Ingrese el distribuidor"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="quantity">Cantidad</label>
+                <input class="form-control" id="quantity" type="number" max="100" min="0" step="1"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="category">Categoria</label>
+                <input class="form-control" type="text" required id="category" placeholder="Ingrese la categoria"/>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button data-bs-dismiss="modal" type="button" class="btn btn-secondary" id="notUpdate"> Cancelar </button>
+              <button type="button" class="btn btn-primary" id="updateProduct"> Guardar </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Update Modal -->
+    
+    <!-- Create  Modal ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div clasFs="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar</h1>
+          </div>
+          <div class="modal-body">
+            <form  id="productadd">
+
+            <div class="mb-3">
+              <label class="form-label" for="createNameProduct">Nombre</label>
+              <input class="form-control" type="text" required id="createNameProduct" placeholder="Ingresa el nombre"/>
+            </div>
+            
+            <div class="mb-3">
+              <label for="createDescription">Descripción</label>
+              <textarea class="form-control" placeholder="Ingrese la descripción" id="createDescription"></textarea>
+            </div>
+            
+            <div class="mb-3">
+
+              <div class="mb-3">
+                <label class="form-label" for="createPrice">Precio</label>
+                <input class="form-control" type="text" required id="createPrice" placeholder="Ingresa el precio"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="createPicture">Url de Imagen</label>
+                <input class="form-control" type="text" required id="createPicture" placeholder="Ingresa la url de la portada"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="createDistributor">Distribuidor</label>
+                <input class="form-control" type="text" required id="createDistributor" placeholder="Ingrese el distribuidor"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="createQuantity">Cantidad</label>
+                <input class="form-control" id="createQuantity" type="number" max="100" min="0" step="1"/>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="createCategory">Categoria</label>
+                <input class="form-control" type="text" required id="createCategory" placeholder="Ingrese la categoria"/>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button data-bs-dismiss="modal" type="button" class="btn btn-secondary" id="notAdd"> Cancelar</button>
+              <button type="submit" class="btn btn-primary" id="addProduct"> Guardar </button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Create Modal-->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../js/services/init.app.js" type="module"></script>
+    <script src="../js/services/security.context.js" type="module"></script>
+    <script src="../js/login.js" type="module"></script>
+    <script src="../js/adminProducts.js" type="module"></script>
+  </body>
+</html>

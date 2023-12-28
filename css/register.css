@@ -1,0 +1,23 @@
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+form {
+  padding: 2rem;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(154, 154, 154);
+}
+
+div {
+  width: 50%;
+}
